@@ -1,16 +1,97 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="@dimen/common_spacing"
-    tools:context=".MainActivity"
-    tools:ignore="SpeakableTextPresentCheck">
+    android:paddingTop="@dimen/common_spacing"
+    android:paddingHorizontal="@dimen/common_spacing"
+    tools:context=".MainActivity">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/posts"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-</FrameLayout>
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/toolsBarrier"/>
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/toolsBarrier"
+        app:barrierDirection="top"
+        app:constraint_referenced_ids="titleEditor, contentOriginal, cancelButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/titleEditor"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/contentOriginal"
+        app:layout_constraintEnd_toStartOf="@id/cancelButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolsBarrier"
+        app:layout_constraintVertical_chainStyle="packed"
+        android:text="@string/edit_message"/>
+
+    <TextView
+        android:id="@+id/contentOriginal"
+        android:importantForAutofill="no"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/cancelButton"
+        android:background="@android:color/transparent"
+        app:layout_constraintBottom_toBottomOf="@id/toolsBarrierEdit"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/titleEditor"/>
+
+    <ImageButton
+        android:id="@+id/cancelButton"
+        android:src="@drawable/ic_cancel_48"
+        android:background="@android:color/transparent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/toolsBarrierEdit"
+        app:layout_constraintTop_toBottomOf="@id/toolsBarrier"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/toolsBarrierEdit"
+        app:barrierDirection="top"
+        app:constraint_referenced_ids="content, save"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    
+    <EditText
+        android:id="@+id/content"
+        android:importantForAutofill="no"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/save"
+        android:background="@android:color/transparent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/toolsBarrierEdit"
+        android:inputType="textMultiLine"/>
+
+    <ImageButton
+        android:id="@+id/save"
+        android:src="@drawable/ic_save_48"
+        android:background="@android:color/transparent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolsBarrierEdit"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/groupCancelPanel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:constraint_referenced_ids="toolsBarrier, titleEditor, contentOriginal, cancelButton" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
