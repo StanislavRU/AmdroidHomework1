@@ -14,13 +14,17 @@
         <!-- Customize your theme here. -->
     </style>
 
-    <style name="likeCheckBox" parent="@style/Widget.AppCompat.CompoundButton.CheckBox">
-        <item name="buttonTint">@color/like_checkbox_tint</item>
+    <style name="likeCheckBox" parent="Widget.MaterialComponents.Button.OutlinedButton">
         <item name="iconPadding">0dp</item>
         <item name="android:insetTop">0dp</item>
         <item name="android:insetBottom">0dp</item>
+        <item name="android:paddingLeft">12dp</item>
+        <item name="android:paddingRight">12dp</item>
         <item name="android:minWidth">48dp</item>
         <item name="android:minHeight">48dp</item>
+        <item name="android:textColor">?attr/colorControlNormal</item>
+        <item name="materialThemeOverlay">@style/ThemeOverlay.App.Button.Like</item>
+
     </style>
 
     <style name="buttonPost" parent="Widget.MaterialComponents.Button.OutlinedButton">
@@ -31,13 +35,17 @@
         <item name="android:paddingRight">12dp</item>
         <item name="android:minWidth">48dp</item>
         <item name="android:minHeight">48dp</item>
-        <item name="android:textColor">@color/black</item>
+        <item name="android:textColor">?attr/colorControlNormal</item>
         <item name="materialThemeOverlay">@style/ThemeOverlay.App.Button</item>
     </style>
 
-    <style name="ThemeOverlay.App.Button" parent="">
+    <style name="ThemeOverlay.App.Button" parent="Widget.MaterialComponents.Button.OutlinedButton">
         <item name="colorPrimary">?attr/colorControlNormal</item>
         <item name="colorOnPrimary">@color/black</item>
+    </style>
+
+    <style name="ThemeOverlay.App.Button.Like" parent="Widget.AppCompat.CompoundButton.CheckBox">
+        <item name="colorPrimary">@color/red</item>
     </style>
 
 
