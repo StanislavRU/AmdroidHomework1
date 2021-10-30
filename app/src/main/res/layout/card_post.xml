@@ -76,20 +76,20 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
-    <com.google.android.material.checkbox.MaterialCheckBox
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/likes"
         style="@style/likeCheckBox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/common_spacing"
         android:background="@android:color/transparent"
-        android:button="@drawable/ic_like_24dp"
+        android:layout_marginTop="@dimen/common_spacing"
+        app:icon="@drawable/ic_like_24dp"
         android:checkable="true"
         android:checked="false"
         android:contentDescription="@string/like"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/content"
-        tools:text="12" />
+        tools:text="12"/>
 
     <Button
         android:id="@+id/repost"
@@ -105,7 +105,6 @@
         tools:text="12"/>
 
     <Button
-
         android:id="@+id/views"
         style="@style/buttonPost"
         app:icon="@drawable/ic_baseline_remove_red_eye_24"
