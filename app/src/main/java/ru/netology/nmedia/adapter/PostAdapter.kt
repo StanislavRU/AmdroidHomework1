@@ -54,17 +54,13 @@ class PostViewHolder(
             content.text = post.content
             authorName.text = post.author
             published.text = post.published
-            valueLikes.text = getValueToText(post.valueLiked)
-            valueRepost.text = getValueToText(post.valueRepost)
-            valueViews.text = getValueToText(post.valueViews)
+            likes.text = getValueToText(post.valueLiked)
+            repost.text = getValueToText(post.valueRepost)
+            views.text = getValueToText(post.valueViews)
 
-            likes.setImageResource(
-                if (post.likedByMe) {
-                    R.drawable.ic_liked
-                } else {
-                    R.drawable.ic_baseline_favorite_border_24
-                }
-            )
+            likes.isChecked = post.likedByMe
+            likes.text = "${post.valueLiked}"
+
 
             likes.setOnClickListener {
                 actionListener.onLikeClicked(post)

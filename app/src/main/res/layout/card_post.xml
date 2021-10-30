@@ -4,6 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:paddingTop="@dimen/common_spacing"
+    android:paddingHorizontal="@dimen/common_spacing"
     tools:context=".MainActivity">
 
     <ImageView
@@ -40,14 +42,15 @@
         app:layout_constraintTop_toBottomOf="@+id/authorName"
         tools:text="@sample/posts.json/data/published" />
 
-    <ImageButton
+    <Button
         android:id="@+id/menu"
+        style="@style/buttonPost"
         android:background="@android:color/transparent"
-        android:src="@drawable/ic_baseline_more_vert_24"
+        app:icon="@drawable/ic_baseline_more_vert_24"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_width="24dp"
-        android:layout_height="24dp" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
     <androidx.constraintlayout.widget.Barrier
         android:id="@+id/barrier"
@@ -73,65 +76,54 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
-    <ImageButton
-        android:layout_marginTop="@dimen/common_spacing"
+    <com.google.android.material.checkbox.MaterialCheckBox
         android:id="@+id/likes"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        style="@style/likeCheckBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/common_spacing"
         android:background="@android:color/transparent"
-        android:src="@drawable/ic_baseline_favorite_border_24"
+        android:button="@drawable/ic_like_24dp"
+        android:checkable="true"
+        android:checked="false"
+        android:contentDescription="@string/like"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/content" />
+        app:layout_constraintTop_toBottomOf="@id/content"
+        tools:text="12" />
 
-    <TextView
-        android:id="@+id/valueLikes"
+    <Button
+        android:id="@+id/repost"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        app:icon="@drawable/ic_baseline_share_24"
+        style="@style/buttonPost"
         app:layout_constraintTop_toTopOf="@id/likes"
         app:layout_constraintBottom_toBottomOf="@id/likes"
         app:layout_constraintStart_toEndOf="@id/likes"
-        android:textSize="16sp"
-        tools:text="12"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        app:layout_constraintTop_toBottomOf="@id/content"
+        tools:text="12"/>
 
-    <ImageButton
-        android:id="@+id/repost"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:background="@android:color/transparent"
-        android:src="@drawable/ic_baseline_share_24"
-        app:layout_constraintTop_toTopOf="@id/likes"
-        app:layout_constraintBottom_toBottomOf="@id/likes"
-        app:layout_constraintStart_toEndOf="@id/valueLikes"
-        app:layout_constraintTop_toBottomOf="@id/content" />
+    <Button
 
-    <TextView
-        android:id="@+id/valueRepost"
-        app:layout_constraintTop_toTopOf="@id/repost"
-        app:layout_constraintBottom_toBottomOf="@id/repost"
-        app:layout_constraintStart_toEndOf="@id/repost"
-        android:textSize="16sp"
-        tools:text="24"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
-    <ImageButton
-        android:src="@drawable/ic_baseline_remove_red_eye_24"
         android:id="@+id/views"
+        style="@style/buttonPost"
+        app:icon="@drawable/ic_baseline_remove_red_eye_24"
         android:background="@android:color/transparent"
         app:layout_constraintTop_toTopOf="@id/likes"
         app:layout_constraintBottom_toBottomOf="@id/likes"
-        app:layout_constraintEnd_toStartOf="@id/valueViews"
-        android:layout_width="40dp"
-        android:layout_height="40dp" />
-
-    <TextView
-        android:id="@+id/valueViews"
-        app:layout_constraintTop_toTopOf="@id/views"
-        app:layout_constraintBottom_toBottomOf="@id/views"
         app:layout_constraintEnd_toEndOf="parent"
-        android:textSize="16sp"
-        tools:text="12.5к"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        tools:text="12"/>
+
+
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/barrierEndPost"
+        app:constraint_referenced_ids="views"
+        app:barrierDirection="bottom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
