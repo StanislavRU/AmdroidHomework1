@@ -1,6 +1,7 @@
 package ru.netology.nmedia.adapter
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import android.widget.PopupMenu
 import androidx.recyclerview.widget.DiffUtil
@@ -16,6 +17,7 @@ interface OnActionListener {
     fun onLikeClicked(post: Post) = Unit
     fun onShareClicked(post: Post) = Unit
     fun onViewsClicked(post: Post) = Unit
+    fun onVideoPlayClicked(post: Post) = Unit
 }
 
 class PostAdapter(
@@ -40,13 +42,12 @@ class PostDiffUtilItemCallback : DiffUtil.ItemCallback<Post>() {
 
     override fun areContentsTheSame(oldItem: Post, newItem: Post): Boolean =
         oldItem == newItem
-
 }
 
 class PostViewHolder(
     private val binding: CardPostBinding,
     private val actionListener: OnActionListener
-    ) : RecyclerView.ViewHolder(binding.root) {
+) : RecyclerView.ViewHolder(binding.root) {
 
     fun bind(post: Post) {
         with(binding) {
@@ -54,12 +55,17 @@ class PostViewHolder(
             content.text = post.content
             authorName.text = post.author
             published.text = post.published
-            likes.text = getValueToText(post.valueLiked)
             repost.text = getValueToText(post.valueRepost)
             views.text = getValueToText(post.valueViews)
-
             likes.isChecked = post.likedByMe
-            likes.text = "${post.valueLiked}"
+            likes.text = getValueToText(post.valueLiked)
+            if (post.videoStatus == true) {
+                video.visibility = View.VISIBLE
+                videoPlay.visibility = View.VISIBLE
+            } else {
+                video.visibility = View.GONE
+                videoPlay.visibility = View.GONE
+            }
 
 
             likes.setOnClickListener {
@@ -72,6 +78,14 @@ class PostViewHolder(
 
             views.setOnClickListener {
                 actionListener.onViewsClicked(post)
+            }
+
+            videoPlay.setOnClickListener {
+                actionListener.onVideoPlayClicked(post)
+            }
+
+            video.setOnClickListener {
+                actionListener.onVideoPlayClicked(post)
             }
 
             menu.setOnClickListener {

@@ -7,7 +7,7 @@ import ru.netology.nmedia.dto.Post
 import ru.netology.nmedia.repository.PostRepository
 import ru.netology.nmedia.repository.PostRepositoryInMemory
 
-private val empty = Post()
+private val empty = Post(videoStatus = false)
 
 class PostViewModel : ViewModel() {
     // TODO упрощенный вариант
