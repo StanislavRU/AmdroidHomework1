@@ -57,7 +57,7 @@ dependencies {
     implementation "androidx.constraintlayout:constraintlayout:$constraintlayout_version"
     testImplementation "junit:junit:$junit_version"
     androidTestImplementation "androidx.test.ext:junit:$junit_test_version"
-    androidTestImplementation "androidx.test.espresso::espresso-core:$espresso_core_version"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$espresso_core_version"
     implementation "androidx.activity:activity-ktx:$activity_version" //MVVM, для новой активити
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version" //MVVM
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version" //MVVM
