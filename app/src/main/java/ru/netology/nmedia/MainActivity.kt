@@ -1,6 +1,5 @@
 package ru.netology.nmedia
 
-import android.annotation.SuppressLint
 import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
@@ -19,6 +18,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         val binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+
         val viewModel: PostViewModel by viewModels()
         val newPostLauncher = registerForActivityResult(NewPostActivityContract()) { text ->
             text ?: return@registerForActivityResult

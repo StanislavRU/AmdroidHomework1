@@ -1,21 +1,20 @@
 package ru.netology.nmedia
 
-import androidx.lifecycle.ViewModel
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import ru.netology.nmedia.dto.Post
 import ru.netology.nmedia.repository.PostRepository
-import ru.netology.nmedia.repository.PostRepositoryInMemory
+import ru.netology.nmedia.repository.PostRepositoryFileImpl
 
-private val empty = Post(videoStatus = false)
+private val empty = Post()
 
-class PostViewModel : ViewModel() {
+class PostViewModel(application: Application) : AndroidViewModel(application) {
     // TODO упрощенный вариант
-    private val repository: PostRepository = PostRepositoryInMemory()
+    private val repository: PostRepository = PostRepositoryFileImpl(application)
     val data: LiveData<List<Post>> = repository.data
     private val _edited = MutableLiveData(empty)
-    val edited: LiveData<Post>
-        get() = _edited
 
     fun likeById(id: Long) {
         repository.likeById(id)
@@ -45,9 +44,5 @@ class PostViewModel : ViewModel() {
             repository.save(it)
             _edited.value = empty
         }
-    }
-
-    fun cancelButton() {
-        _edited.value = empty
     }
 }
