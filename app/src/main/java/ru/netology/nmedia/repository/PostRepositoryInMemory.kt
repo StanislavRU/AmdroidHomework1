@@ -16,8 +16,7 @@ class PostRepositoryInMemory : PostRepository {
                 published = "23 сентября в 10:12",
                 likedByMe = false,
                 valueLiked = 559,
-                valueRepost = 12,
-                videoStatus = false
+                valueRepost = 12
 
             ),
             Post(
@@ -27,8 +26,7 @@ class PostRepositoryInMemory : PostRepository {
                 published = "22 сентября в 19:14",
                 likedByMe = false,
                 valueLiked = 55,
-                valueRepost = 999,
-                videoStatus = false
+                valueRepost = 999
             ),
             Post(
                 id = postId++,
@@ -37,8 +35,7 @@ class PostRepositoryInMemory : PostRepository {
                 published = "22 сентября в 10:12",
                 likedByMe = false,
                 valueLiked = 99999,
-                valueRepost = 555,
-                videoStatus = false
+                valueRepost = 555
             ),
             Post(
                 id = postId++,
@@ -47,8 +44,7 @@ class PostRepositoryInMemory : PostRepository {
                 published = "21 сентября в 10:12",
                 likedByMe = false,
                 valueLiked = 123,
-                valueRepost = 38,
-                videoStatus = false
+                valueRepost = 38
             ),
             Post(
                 id = postId++,
@@ -57,8 +53,7 @@ class PostRepositoryInMemory : PostRepository {
                 published = "20 сентября в 10:14",
                 likedByMe = false,
                 valueLiked = 9999,
-                valueRepost = 100,
-                videoStatus = false
+                valueRepost = 100
             ),
             Post(
                 id = postId++,
@@ -66,8 +61,7 @@ class PostRepositoryInMemory : PostRepository {
                 content = "Большая афиша мероприятий осени: конференции, выставки и хакатоны для жителей Москвы, Ульяновска и Новосибирска \uD83D\uDE09",
                 published = "19 сентября в 14:12",
                 likedByMe = false,
-                valueLiked = 0,
-                videoStatus = false
+                valueLiked = 0
             ),
             Post(
                 id = postId++,
@@ -75,8 +69,7 @@ class PostRepositoryInMemory : PostRepository {
                 content = "Языков программирования много, и выбрать какой-то один бывает нелегко. Собрали подборку статей, которая поможет вам начать, если вы остановили свой выбор на JavaScript.",
                 published = "19 сентября в 10:24",
                 likedByMe = false,
-                valueLiked = 10,
-                videoStatus = false
+                valueLiked = 10
             ),
             Post(
                 id = postId++,
@@ -84,8 +77,7 @@ class PostRepositoryInMemory : PostRepository {
                 content = "Знаний хватит на всех: на следующей неделе разбираемся с разработкой мобильных приложений, учимся рассказывать истории и составлять PR-стратегию прямо на бесплатных занятиях \uD83D\uDC47",
                 published = "18 сентября в 10:12",
                 likedByMe = false,
-                valueLiked = 999,
-                videoStatus = false
+                valueLiked = 999
             ),
             Post(
                 id = postId++,
@@ -93,8 +85,7 @@ class PostRepositoryInMemory : PostRepository {
                 content = "Привет, это новая Нетология! Когда-то Нетология начиналась с интенсивов по онлайн-маркетингу. Затем появились курсы по дизайну, разработке, аналитике и управлению. Мы растём сами и помогаем расти студентам: от новичков до уверенных профессионалов. Но самое важное остаётся с нами: мы верим, что в каждом уже есть сила, которая заставляет хотеть больше, целиться выше, бежать быстрее. Наша миссия — помочь встать на путь роста и начать цепочку перемен → http://netolo.gy/fyb",
                 published = "21 мая в 18:36",
                 likedByMe = false,
-                valueLiked = 123,
-                videoStatus = false
+                valueLiked = 123
             ),
             Post(
                 id = postId++,
@@ -104,8 +95,7 @@ class PostRepositoryInMemory : PostRepository {
                 likedByMe = false,
                 valueLiked = 900,
                 valueRepost = 0,
-                video = "https://www.youtube.com/watch?v=HKXzKdbdU4w",
-                videoStatus = true
+                video = "https://www.youtube.com/watch?v=HKXzKdbdU4w"
             ),
         ).reversed()
 

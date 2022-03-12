@@ -59,7 +59,7 @@ class PostViewHolder(
             views.text = getValueToText(post.valueViews)
             likes.isChecked = post.likedByMe
             likes.text = getValueToText(post.valueLiked)
-            if (post.videoStatus == true) {
+            if (post.video != null) {
                 video.visibility = View.VISIBLE
                 videoPlay.visibility = View.VISIBLE
             } else {
