@@ -20,6 +20,7 @@ class PostRepositoryFileImpl(val context: Context) : PostRepository {
         if (file.exists()) {
             context.openFileInput(filename).bufferedReader().use {
                 defaultPosts = gson.fromJson(it, type)
+                postId = defaultPosts.maxOfOrNull { post -> post.id }?.inc() ?: 1L
                 data.value = defaultPosts
             }
         } else {
@@ -121,7 +122,7 @@ class PostRepositoryFileImpl(val context: Context) : PostRepository {
 
     override fun likeById(id: Long) {
         val currentPosts: List<Post> = data.value ?: return
-        val result = currentPosts.map {
+        defaultPosts = currentPosts.map {
             if (it.id == id && it.likedByMe) it.copy(
                 likedByMe = !it.likedByMe,
                 valueLiked = --it.valueLiked
@@ -130,51 +131,53 @@ class PostRepositoryFileImpl(val context: Context) : PostRepository {
                 valueLiked = ++it.valueLiked
             ) else it
         }
-        data.value = result 
+        data.value = defaultPosts
         sync()
     }
 
     override fun shareById(id: Long) {
         val currentPosts: List<Post> = data.value ?: return
-        val result = currentPosts.map {
+        defaultPosts = currentPosts.map {
             if (it.id == id) it.copy(
                 valueRepost = it.valueRepost + 1
             ) else it
         }
-        data.value = result
+        data.value = defaultPosts
         sync()
     }
 
     override fun viewsById(id: Long) {
         val currentPosts: List<Post> = data.value ?: return
-        val result = currentPosts.map {
+        defaultPosts = currentPosts.map {
             if (it.id == id) it.copy(
                 valueViews = it.valueViews + 1
             ) else it
         }
-        data.value = result
+        data.value = defaultPosts
         sync()
     }
 
     override fun removeById(id: Long) {
-        data.value = data.value?.filter {it.id != id}
+        defaultPosts = defaultPosts.filter {it.id != id}
         sync()
     }
 
     override fun save(post: Post) {
         if (post.id == 0L) {
             val newPost = post.copy(id = postId++)
-            data.value = listOf(newPost) + data.value.orEmpty()
+            defaultPosts = listOf(newPost) + defaultPosts
+            data.value = defaultPosts
             sync()
             return
         }
-        data.value = data.value?.map {
+        defaultPosts = defaultPosts.map {
             if (it.id == post.id) {
                 it.copy(content = post.content, id = postId++)
             } else {
                 it
             }
         }
+        data.value = defaultPosts
         sync()
     }
 
@@ -184,7 +187,7 @@ class PostRepositoryFileImpl(val context: Context) : PostRepository {
 
     private fun sync() {
         context.openFileOutput(filename, Context.MODE_PRIVATE).bufferedWriter().use {
-            it.write(gson.toJson(data.value))
+            it.write(gson.toJson(defaultPosts))
         }
     }
 }
