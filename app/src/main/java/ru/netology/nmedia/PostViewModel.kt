@@ -24,10 +24,6 @@ class PostViewModel(application: Application) : AndroidViewModel(application) {
         repository.shareById(id)
     }
 
-    fun viewById(id: Long) {
-        repository.viewsById(id)
-    }
-
     fun edit(post: Post) {
         _edited.value = post
     }
@@ -39,6 +35,7 @@ class PostViewModel(application: Application) : AndroidViewModel(application) {
     fun changeContent(content: String) {
         _edited.value = _edited.value?.copy(content = content)
     }
+
     fun save() {
         _edited.value?.also {
             repository.save(it)

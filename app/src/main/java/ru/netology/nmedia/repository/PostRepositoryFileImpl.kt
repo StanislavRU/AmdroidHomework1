@@ -158,26 +158,24 @@ class PostRepositoryFileImpl(val context: Context) : PostRepository {
     }
 
     override fun removeById(id: Long) {
-        defaultPosts = defaultPosts.filter {it.id != id}
+        data.value = data.value?.filter {it.id != id}
         sync()
     }
 
     override fun save(post: Post) {
         if (post.id == 0L) {
             val newPost = post.copy(id = postId++)
-            defaultPosts = listOf(newPost) + defaultPosts
-            data.value = defaultPosts
+            data.value = listOf(newPost) + data.value.orEmpty()
             sync()
             return
         }
-        defaultPosts = defaultPosts.map {
+        data.value = data.value?.map {
             if (it.id == post.id) {
                 it.copy(content = post.content, id = postId++)
             } else {
                 it
             }
         }
-        data.value = defaultPosts
         sync()
     }
 
@@ -187,7 +185,7 @@ class PostRepositoryFileImpl(val context: Context) : PostRepository {
 
     private fun sync() {
         context.openFileOutput(filename, Context.MODE_PRIVATE).bufferedWriter().use {
-            it.write(gson.toJson(defaultPosts))
+            it.write(gson.toJson(data.value))
         }
     }
 }
