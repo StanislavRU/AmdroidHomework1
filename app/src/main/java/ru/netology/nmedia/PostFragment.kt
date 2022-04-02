@@ -36,7 +36,7 @@ class PostFragment : Fragment() {
                     authorName.text = post.author
                     published.text = post.published
                     repost.text = getValueToText(post.valueRepost)
-                    views.text = getValueToText(++post.valueViews)
+                    views.text = getValueToText(post.valueViews)
                     likes.isChecked = post.likedByMe
                     likes.text = getValueToText(post.valueLiked)
                     if (post.video != null) {
@@ -60,13 +60,15 @@ class PostFragment : Fragment() {
                     }
                     video.setOnClickListener {
                         val intent = Intent(Intent.ACTION_VIEW, Uri.parse(post.video))
-//                    if (intent.resolveActivity(packageManager) != null) {
-                        startActivity(intent)
+                        if (intent.resolveActivity(requireContext().packageManager) != null) {
+                            startActivity(intent)
+                        }
                     }
                     videoPlay.setOnClickListener {
                         val intent = Intent(Intent.ACTION_VIEW, Uri.parse(post.video))
-//                    if (intent.resolveActivity(packageManager) != null) {
-                        startActivity(intent)
+                        if (intent.resolveActivity(requireContext().packageManager) != null) {
+                            startActivity(intent)
+                        }
                     }
                     menu.setOnClickListener {
                         PopupMenu(it.context, it).apply {

@@ -57,12 +57,13 @@ class FeedFragment : Fragment(), OnActionListener {
 
                 override fun onVideoPlayClicked(post: Post) {
                     val intent = Intent(Intent.ACTION_VIEW, Uri.parse(post.video))
-//                    if (intent.resolveActivity(packageManager) != null) {
+                    if (intent.resolveActivity(requireContext().packageManager) != null) {
                     startActivity(intent)
+                    }
                 }
-//                }
 
                 override fun onPostClicked(post: Post) {
+                    viewModel.viewsById(post.id)
                     findNavController().navigate(R.id.action_feedFragment_to_postFragment,
                         Bundle().apply
                         { longArg = post.id })

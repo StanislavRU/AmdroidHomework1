@@ -34,7 +34,6 @@ class PostRepositoryFileImpl(val context: Context) : PostRepository {
                         likedByMe = false,
                         valueLiked = 559,
                         valueRepost = 12
-
                     ),
                     Post(
                         id = postId++,
