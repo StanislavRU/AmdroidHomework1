@@ -2,23 +2,22 @@ package ru.netology.nmedia
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import ru.netology.nmedia.db.AppDb
 import ru.netology.nmedia.dto.Post
 import ru.netology.nmedia.repository.PostRepository
-import ru.netology.nmedia.repository.PostRepositoryFileImpl
-import ru.netology.nmedia.repository.PostRepositorySQLiteImpl
+import ru.netology.nmedia.repository.PostRepositoryRoomImpl
+
 
 private val empty = Post()
 
 class PostViewModel(application: Application) : AndroidViewModel(application) {
     // TODO упрощенный вариант
-    private val repository: PostRepository = PostRepositorySQLiteImpl(
-        AppDb.getInstance(application).postDao
+    private val repository: PostRepository = PostRepositoryRoomImpl(
+        AppDb.getInstance(context = application).postDao()
     )
-//    private val repository: PostRepository = PostRepositoryFileImpl(application)
-    val data: LiveData<List<Post>> = repository.data
+
+    val data = repository.getAll()
     private val _edited = MutableLiveData(empty)
 
     fun likeById(id: Long) {

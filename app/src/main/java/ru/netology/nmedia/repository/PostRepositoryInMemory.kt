@@ -1,5 +1,6 @@
 package ru.netology.nmedia.repository
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import ru.netology.nmedia.dto.Post
 
@@ -100,6 +101,9 @@ class PostRepositoryInMemory : PostRepository {
         ).reversed()
 
     override val data = MutableLiveData(defaultPosts)
+    override fun getAll(): LiveData<List<Post>> {
+        TODO("Not yet implemented")
+    }
 
     override fun likeById(id: Long) {
         val currentPosts: List<Post> = data.value ?: return
