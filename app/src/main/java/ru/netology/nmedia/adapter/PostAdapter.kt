@@ -16,8 +16,8 @@ interface OnActionListener {
     fun onRemoveClicked(post: Post) = Unit
     fun onLikeClicked(post: Post) = Unit
     fun onShareClicked(post: Post) = Unit
-    fun onViewsClicked(post: Post) = Unit
     fun onVideoPlayClicked(post: Post) = Unit
+    fun onPostClicked(post: Post) = Unit
 }
 
 class PostAdapter(
@@ -67,7 +67,6 @@ class PostViewHolder(
                 videoPlay.visibility = View.GONE
             }
 
-
             likes.setOnClickListener {
                 actionListener.onLikeClicked(post)
             }
@@ -76,16 +75,28 @@ class PostViewHolder(
                 actionListener.onShareClicked(post)
             }
 
-            views.setOnClickListener {
-                actionListener.onViewsClicked(post)
-            }
-
             videoPlay.setOnClickListener {
                 actionListener.onVideoPlayClicked(post)
             }
 
             video.setOnClickListener {
                 actionListener.onVideoPlayClicked(post)
+            }
+
+            content.setOnClickListener {
+                actionListener.onPostClicked(post)
+            }
+
+            authorName.setOnClickListener {
+                actionListener.onPostClicked(post)
+            }
+
+            published.setOnClickListener {
+                actionListener.onPostClicked(post)
+            }
+
+            avatar.setOnClickListener {
+                actionListener.onPostClicked(post)
             }
 
             menu.setOnClickListener {
