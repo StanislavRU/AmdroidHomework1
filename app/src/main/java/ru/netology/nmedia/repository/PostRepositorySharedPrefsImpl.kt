@@ -1,6 +1,7 @@
 package ru.netology.nmedia.repository
 
 import android.content.Context
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
@@ -15,6 +16,9 @@ class PostRepositorySharedPrefsImpl(context: Context) : PostRepository {
     private var postId = 1L
     private var defaultPosts = emptyList<Post>()
     override val data = MutableLiveData(defaultPosts)
+    override fun getAll(): LiveData<List<Post>> {
+        TODO("Not yet implemented")
+    }
 
     init {
         prefs.getString(key, null)?.let {

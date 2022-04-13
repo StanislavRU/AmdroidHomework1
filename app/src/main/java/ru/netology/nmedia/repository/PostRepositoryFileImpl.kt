@@ -1,6 +1,7 @@
 package ru.netology.nmedia.repository
 
 import android.content.Context
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
@@ -14,6 +15,9 @@ class PostRepositoryFileImpl(val context: Context) : PostRepository {
     private val filename = "posts.json"
     private var defaultPosts = emptyList<Post>()
     override val data = MutableLiveData(defaultPosts)
+    override fun getAll(): LiveData<List<Post>> {
+        TODO("Not yet implemented")
+    }
 
     init {
         val file = context.filesDir.resolve(filename)
